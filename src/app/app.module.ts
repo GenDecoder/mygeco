@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CentralizeDirective } from './centralize.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CentralizeDirective,
   ],
   imports: [
     BrowserModule,

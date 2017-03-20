@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<div class="modal" *ngIf="showModal" mygecoCentralize>
+
+  <div class="modal-header">
+    <div class="title">CONTACT FORM</div>
+    <img src="./images/close.png" (click)="toggleModal()">
+  </div>
+
+  <form class="modal-body">
+    
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" required>
+
+    <label for="email">Email</label>
+    <input name="email" id="email" type="text" required>
+
+    <label for="message">Message</label>
+    <textarea name="message" id="message" required></textarea>
+
+  </form>
+
+</div>
+
+<div *ngIf="showModal" class="back-drop" (click)="toggleModal()"></div>
+
+<button (click)="toggleModal()">Toggle Modal</button>
+
