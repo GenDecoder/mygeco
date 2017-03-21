@@ -5,22 +5,61 @@
     <img src="./images/close.png" (click)="toggleModal()">
   </div>
 
-  <form class="modal-body">
+  <form class="modal-body" #contactForm="ngForm">
     
-    <label for="name">Name</label>
-    <input name="name" id="name" type="text" required>
+    <label for="name">
+      <span class="required">*</span>
+      <span>Name</span>
+      <span class="error-message" [hidden]="name.valid || name.pristine">Required Field</span>
+    </label>
 
-    <label for="email">Email</label>
-    <input name="email" id="email" type="text" required>
+    <input 
+      [(ngModel)]="contact.name"
+      #name="ngModel"
+      type="text"
+      name="name"
+      id="name"
+      required
+    >
 
-    <label for="message">Message</label>
-    <textarea name="message" id="message" required></textarea>
+    <label for="email">
+      <span class="required">*</span>
+      <span>Email</span>
+      <span class="error-message" [hidden]="email.valid || email.pristine">Required Field</span>
+    </label>
+    <input
+      [(ngModel)]="contact.email"
+      #email="ngModel"
+      name="email"
+      type="text"
+      id="email"
+      required
+    >
+
+    <label for="message">
+      <span class="required">*</span>
+      <span>Message</span>
+      <span class="error-message" [hidden]="message.valid || message.pristine">Required Field</span>
+    </label>
+    <textarea 
+      [(ngModel)]="contact.message"
+      #message="ngModel"
+      name="message"
+      id="message"
+      required
+    ></textarea>
 
   </form>
 
+  <div class="modal-footer">
+    <button [disabled]="!contactForm.form.valid">Send</button>
+  </div>
+
 </div>
 
-<div *ngIf="showModal" class="back-drop" (click)="toggleModal()"></div>
+<div *ngIf="showModal" class="back-drop"></div>
 
 <button (click)="toggleModal()">Toggle Modal</button>
+
+<!--https://scotch.io/tutorials/angular-2-form-validation-->
 
