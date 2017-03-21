@@ -1,0 +1,46 @@
+<div class="ui raised segment">  
+  <h2 class="ui header">Demo Form: Sku</h2>  
+  <form #f="ngForm"  
+        (ngSubmit)="onSubmit(f.value)"  
+        class="ui form">
+
+    <div class="field">  
+      <label for="skuInput">SKU</label>  
+      <input type="text"  
+              id="skuInput"  
+              placeholder="SKU"  
+              name="sku" ngModel>  
+    </div>
+
+    <button type="submit" class="ui button">Submit</button>  
+  </form>  
+</div>  
+
+
+ 
+<h2 class="ui header">FORM WITH FORMBUILDER</h2>  
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)"> 
+    <label for="name">NAME</label>  
+    <input
+      type="text"  
+      id="name"        
+      [formControl]="myForm.controls['name']"
+    >
+
+    <label for="email">EMAIL</label>
+    <input
+      type="text"
+      id="email"
+      [formControl]="myForm.controls['email']"
+    >
+
+    <span *ngIf="myForm.controls['email'].touched">
+      <span *ngIf="myForm.controls['email'].hasError('minlength')"> Too short </span>
+      <span *ngIf="myForm.controls['email'].hasError('required')"> Field required </span>
+    </span>
+    
+
+  <button [disabled]="!myForm.valid || !myForm.dirty" type="submit" class="ui button">Submit</button> 
+  <button (click)="myForm.reset()">RESET</button> 
+</form>  
+  
