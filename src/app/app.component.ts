@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Hero, heroes } from './test-form/test';
 
 @Component({
   selector: 'mygeco-root',
@@ -6,11 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  contact: Object = {
-    name: '',
-    email: '',
-    message: ''
-  };
+  selectedHero: Hero;
+  heroes: Hero[] = heroes;
+  
   showModal: Boolean = false;
   toggleModal() {
     this.showModal = !this.showModal;

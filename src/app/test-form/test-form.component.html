@@ -1,4 +1,4 @@
-<div class="ui raised segment">  
+<!--<div class="ui raised segment">  
   <h2 class="ui header">Demo Form: Sku</h2>  
   <form #f="ngForm"  
         (ngSubmit)="onSubmit(f.value)"  
@@ -14,33 +14,51 @@
 
     <button type="submit" class="ui button">Submit</button>  
   </form>  
-</div>  
+</div>  -->
 
 
  
 <h2 class="ui header">FORM WITH FORMBUILDER</h2>  
-<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)"> 
+<form [formGroup]="heroForm" (ngSubmit)="onSubmit()" novalidate> 
     <label for="name">NAME</label>  
     <input
       type="text"  
       id="name"        
-      [formControl]="myForm.controls['name']"
+      formControlName="name"
     >
-
-    <label for="email">EMAIL</label>
+    <!--<label for="email">EMAIL</label>
     <input
       type="text"
       id="email"
-      [formControl]="myForm.controls['email']"
+      formControlName="email"      
     >
+    <span *ngIf="heroForm.get('email').touched">
+      <span *ngIf="heroForm.get('email').hasError('minlength')"> Too short </span>
+      <span *ngIf="heroForm.get('email').hasError('required')"> Field required </span>
+    </span>-->
 
-    <span *ngIf="myForm.controls['email'].touched">
-      <span *ngIf="myForm.controls['email'].hasError('minlength')"> Too short </span>
-      <span *ngIf="myForm.controls['email'].hasError('required')"> Field required </span>
-    </span>
-    
+    <div formArrayName="addressArray" class="well well-lg">
+      <div *ngFor="let address of addressArray.controls; let i=index" [formGroupName]="i" >        
+        <label for="state">STATE</label>
+        <select id="state" formControlName="state">
+            <option *ngFor="let state of states" [value]="state">{{state}}</option>
+        </select>
+      </div>
+    </div>
 
-  <button [disabled]="!myForm.valid || !myForm.dirty" type="submit" class="ui button">Submit</button> 
-  <button (click)="myForm.reset()">RESET</button> 
+    <!--<div formGroupName="address">
+      <label for="state">STATE</label>
+      <select id="state" formControlName="state">
+          <option *ngFor="let state of states" [value]="state">{{state}}</option>
+      </select>
+    </div>-->
+
+  <button [disabled]="!heroForm.valid || !heroForm.dirty" type="submit" class="ui button">Submit</button> 
+  <!--<button (click)="heroForm.reset()">RESET</button> -->
 </form>  
+
+<p>Form value: {{ heroForm.value | json }}</p>
+<p>Form status: {{ heroForm.status | json }}</p>
+
+<p>Name value: {{ heroForm.get('name').value }}</p>
   

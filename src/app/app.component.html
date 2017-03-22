@@ -1,64 +1,58 @@
-<div class="modal" *ngIf="showModal" mygecoCentralize>
+<!--<div class="modal" *ngIf="showModal" mygecoCentralize>
 
   <div class="modal-header">
     <div class="title">CONTACT FORM</div>
     <img src="./images/close.png" (click)="toggleModal()">
   </div>
 
-  <form class="modal-body" #contactForm="ngForm">
+  <form class="modal-body" novalidate>
     
     <label for="name">
       <span class="required">*</span>
       <span>Name</span>
-      <span class="error-message" [hidden]="name.valid || name.pristine">Required Field</span>
+      <span class="error-message">Required Field</span>
     </label>
 
     <input 
-      [(ngModel)]="contact.name"
-      #name="ngModel"
       type="text"
-      name="name"
       id="name"
-      required
     >
 
     <label for="email">
       <span class="required">*</span>
       <span>Email</span>
-      <span class="error-message" [hidden]="email.valid || email.pristine">Required Field</span>
+      <span class="error-message">Required Field</span>
     </label>
     <input
-      [(ngModel)]="contact.email"
-      #email="ngModel"
-      name="email"
       type="text"
       id="email"
-      required
     >
 
     <label for="message">
       <span class="required">*</span>
       <span>Message</span>
-      <span class="error-message" [hidden]="message.valid || message.pristine">Required Field</span>
+      <span class="error-message">Required Field</span>
     </label>
     <textarea 
-      [(ngModel)]="contact.message"
-      #message="ngModel"
-      name="message"
       id="message"
-      required
     ></textarea>
 
   </form>
 
   <div class="modal-footer">
-    <button [disabled]="!contactForm.form.valid">Send</button>
+    <button>Send</button>
   </div>
 
 </div>
 
 <div *ngIf="showModal" class="back-drop"></div>
 
-<button (click)="toggleModal()">Toggle Modal</button>
+<button (click)="toggleModal()">Toggle Modal</button>-->
 
-<mygeco-test-form></mygeco-test-form>
+<div *ngFor="let hero of heroes" (click)="selectedHero=hero">
+  {{hero.name}}
+</div>
+
+<div *ngIf="selectedHero">
+  <mygeco-test-form [hero]="selectedHero"></mygeco-test-form>
+</div>
